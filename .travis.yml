@@ -24,7 +24,7 @@ matrix:
       dart: stable
       before_script:
         - cd prime
-        - dart2native test.dart
+        - dart2native -o testdart test.dart
       script:
         - for i in {1..5}; do ./testdart; done
     - language: node_js
