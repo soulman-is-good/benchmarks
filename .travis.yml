@@ -11,7 +11,7 @@ matrix:
       compiler: gcc
       before_script:
         - cd prime
-        - gcc -o testgcc -lm ./test.c
+        - gcc ./test.c -o testgcc -lm
       script:
         - for i in {1..5}; do ./testgcc; done
     - language: java
@@ -40,7 +40,7 @@ matrix:
       script:
         - for i in {1..5}; do python test.py; done
     - language: python
-      python: 3
+      python: 3.7
       before_script:
         - cd prime
       script:
@@ -53,6 +53,8 @@ matrix:
       script:
         - for i in {1..5}; do ./testrust; done
     - language: go
+      env:
+        - CGO_ENABLED=0
       before_script:
         - cd prime
         - go build -o testgo test.go
