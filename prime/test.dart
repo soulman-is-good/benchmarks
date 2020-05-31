@@ -15,17 +15,18 @@ bool isPrime (int n){
     return true;
 }
 
-int main() {
+void countPrime() {
     int count = 0;
-    final time = DateTime.now().millisecondsSinceEpoch;
 
     for (int i = 0; i < 10000000; i++){
         if (isPrime(i)){
             count++;
         }
     }
+}
 
-
-    print((DateTime.now().millisecondsSinceEpoch - time)/1000);
-    return 0;
+void main() {
+  final time = DateTime.now().millisecondsSinceEpoch;
+  countPrime();
+  print((DateTime.now().millisecondsSinceEpoch - time)/1000);
 }

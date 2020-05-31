@@ -18,16 +18,17 @@ var isPrime = function(n){
 
 var countPrime = function(){
     let count = 0;
-    const time = Date.now();
 
     for (let i = 1; i < 10000000;i++){
         if (isPrime(i)){
             count++;
         }
     }
-
-    console.log((Date.now() - time) / 1000);
 };
 
+// Optimize on first run
 countPrime();
-
+// Mesure
+const time = Date.now();
+countPrime();
+console.log((Date.now() - time) / 1000);
