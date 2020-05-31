@@ -4,69 +4,69 @@ matrix:
       compiler: clang
       before_script:
         - cd prime
-        - clang -o testclang ./test.c
+        - clang -o testclang -lm ./test.c
       script:
-        - for i in {1..5}; ./testclang
+        - for i in {1..5}; do ./testclang; done
     - language: c
       compiler: gcc
       before_script:
         - cd prime
-        - gcc -o testgcc ./test.c
+        - gcc -o testgcc -lm ./test.c
       script:
-        - for i in {1..5}; ./testgcc
+        - for i in {1..5}; do ./testgcc; done
     - language: java
       before_script:
         - cd prime
         - javac Test.java
       script:
-        - for i in {1..5}; java Test
+        - for i in {1..5}; do java Test; done
     - language: dart
       dart: stable
       before_script:
         - cd prime
         - dart2native test.dart
       script:
-        - for i in {1..5}; ./testdart
+        - for i in {1..5}; do ./testdart; done
     - language: node_js
       node_js: 14
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; node test.js
+        - for i in {1..5}; do node test.js; done
     - language: python
       python: 2.7
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; python test.py
+        - for i in {1..5}; do python test.py; done
     - language: python
       python: 3
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; python test.py
+        - for i in {1..5}; do python test.py; done
     - language: rust
       rust: stable
       before_script:
         - cd prime
         - rustc -o testrust test.rs
       script:
-        - for i in {1..5}; ./testrust
+        - for i in {1..5}; do ./testrust; done
     - language: go
       before_script:
         - cd prime
         - go build -o testgo test.go
       script:
-        - for i in {1..5}; ./testgo
+        - for i in {1..5}; do ./testgo; done
     - language: php
       php: '5.6'
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; php ./test.php
+        - for i in {1..5}; do php ./test.php; done
     - language: php
       php: '7.0'
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; php ./test.php
+        - for i in {1..5}; do php ./test.php; done
