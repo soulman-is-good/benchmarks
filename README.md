@@ -1,5 +1,7 @@
 # Languages benchmarks
 
+![travisci](https://travis-ci.org/soulman-is-good/benchmarks.svg?branch=master)
+
 Gathering of code execution tests for such languages (their versions and compilers):
 - C
 - Java
