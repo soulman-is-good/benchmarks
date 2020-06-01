@@ -19,7 +19,7 @@ matrix:
         - for i in {1..5}; do ./testgcc; done > ../reports/prime_gcc.out
       before_deploy:
         - cd ..
-        - sleep 3
+        - sleep 10
         - git pull
     - language: java
       before_script:
@@ -29,7 +29,7 @@ matrix:
         - for i in {1..5}; do java Test; done > ../reports/prime_java.out
       before_deploy:
         - cd ..
-        - sleep 6
+        - sleep 20
         - git pull
     - language: dart
       dart: stable
@@ -40,7 +40,6 @@ matrix:
         - for i in {1..5}; do ./testdart; done > ../reports/prime_dart.out
       before_deploy:
         - cd ..
-        - sleep 9
         - git pull
     - language: node_js
       node_js: 14
@@ -50,7 +49,6 @@ matrix:
         - for i in {1..5}; do node test.js; done > ../reports/prime_nodejs.out
       before_deploy:
         - cd ..
-        - sleep 12
         - git pull
     - language: python
       python: 2.7
@@ -70,7 +68,6 @@ matrix:
         - for i in {1..5}; do python test.py; done > ../reports/prime_py3.out
       before_deploy:
         - cd ..
-        - sleep 18
         - git pull
     - language: rust
       rust: stable
@@ -81,7 +78,6 @@ matrix:
         - for i in {1..5}; do ./testrust; done > ../reports/prime_rust.out
       before_deploy:
         - cd ..
-        - sleep 21
         - git pull
     - language: go
       env:
@@ -103,7 +99,6 @@ matrix:
         - for i in {1..5}; do php ./test.php; done > ../reports/prime_php5.out
       before_deploy:
         - cd ..
-        - sleep 27
         - git pull
     - language: php
       php: '7.0'
@@ -113,7 +108,6 @@ matrix:
         - for i in {1..5}; do php ./test.php; done > ../reports/prime_php7.out
       before_deploy:
         - cd ..
-        - sleep 30
         - git pull
 deploy:
   provider: pages
