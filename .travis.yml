@@ -6,52 +6,52 @@ matrix:
         - cd prime
         - clang -o testclang -lm ./test.c
       script:
-        - for i in {1..5}; do ./testclang; done
+        - for i in {1..5}; do ./testclang; done > ../reports/prime_clang.out
     - language: c
       compiler: gcc
       before_script:
         - cd prime
         - gcc ./test.c -o testgcc -lm
       script:
-        - for i in {1..5}; do ./testgcc; done
+        - for i in {1..5}; do ./testgcc; done > ../reports/prime_gcc.out
     - language: java
       before_script:
         - cd prime
         - javac Test.java
       script:
-        - for i in {1..5}; do java Test; done
+        - for i in {1..5}; do java Test; done > ../reports/prime_java.out
     - language: dart
       dart: stable
       before_script:
         - cd prime
         - dart2native -o testdart test.dart
       script:
-        - for i in {1..5}; do ./testdart; done
+        - for i in {1..5}; do ./testdart; done > ../reports/prime_dart.out
     - language: node_js
       node_js: 14
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; do node test.js; done
+        - for i in {1..5}; do node test.js; done > ../reports/prime_nodejs.out
     - language: python
       python: 2.7
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; do python test.py; done
+        - for i in {1..5}; do python test.py; done > ../reports/prime_py2.out
     - language: python
       python: 3.7
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; do python test.py; done
+        - for i in {1..5}; do python test.py; done > ../reports/prime_py3.out
     - language: rust
       rust: stable
       before_script:
         - cd prime
         - rustc -o testrust test.rs
       script:
-        - for i in {1..5}; do ./testrust; done
+        - for i in {1..5}; do ./testrust; done > ../reports/prime_rust.out
     - language: go
       env:
         - CGO_ENABLED=0
@@ -59,16 +59,22 @@ matrix:
         - cd prime
         - go build -o testgo test.go
       script:
-        - for i in {1..5}; do ./testgo; done
+        - for i in {1..5}; do ./testgo; done > ../reports/prime_go.out
     - language: php
       php: '5.6'
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; do php ./test.php; done
+        - for i in {1..5}; do php ./test.php; done > ../reports/prime_php5.out
     - language: php
       php: '7.0'
       before_script:
         - cd prime
       script:
-        - for i in {1..5}; do php ./test.php; done
+        - for i in {1..5}; do php ./test.php; done > ../reports/prime_php7.out
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarking results | Soul Solutions</title>
+</head>
+<body>
+  <h1>Languages benchmarks results page</h1>
+  <div id="root"></div>
+  <script>
+    const tests = [
+      'prime',
+      // TODO: Add more
+    ];
+    const langs = [
+      'gcc',
+      'clang',
+      'dart',
+      'java',
+      'nodejs',
+      'go',
+      'php5',
+      'php7',
+      'py2',
+      'py3',
+      'rust',
+    ];
+    const root = document.getElementById('root');
+
+    function fetchFile(file) {
+      return fetch(`/reports/${file}`)
+        .then(res => res.ok ? res.text() : null)
+        .then(data => {
+          if (data) {
+            return data.split(/\n/);
+          }
+          throw new Error('Something went wrong');
+        })
+        .catch(console.error);
+    }
+    function renderResults(test) {
+      const cont = document.createElement('div');
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const tbody = document.createElement('tbody');
+      const h2 = document.createElement('h2');
+      h2.innerHTML = test;
+
+      cont.className = `results ${test}`;
+      cont.append(h2);
+      cont.append(table);
+      root.appendChild(cont);
+      table.appendChild(thead);
+      table.appendChild(tbody);
+      thead.innerHTML = '<tr>' + langs.map(lang => `<th>${lang}</th>`).join('') + '</tr>';
+      Promise.all(
+        langs.map(lang => fetchFile(`${test}_${lang}.out`))
+      )
+        .then(data => {
+          for (let i = 0; i < 5; i += 1) {
+            const tr = document.createElement('tr');
+
+            tr.innerHTML = langs.map((lang, index) => {
+              return `<td>${data[index][i]}</td>`;
+            }).join('');
+            tbody.appendChild(tr);
+          }
+        });
+    }
+
+    tests.forEach(renderResults);
+  </script>
+</body>
+</html>

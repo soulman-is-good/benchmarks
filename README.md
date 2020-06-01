@@ -11,6 +11,7 @@ Gathering of code execution tests for such languages (their versions and compile
 - Dart
 - Python
 - PHP
+- ruby (TODO)
 
 ### Current benchmarks code
 

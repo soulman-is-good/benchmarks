@@ -30,6 +30,6 @@ for ($i = 1; $i < 10000000; $i++){
     }
 }
 
-print((milliseconds() - $time) / 1000);
+printf("%f\n", (milliseconds() - $time) / 1000);
 
 ?>
