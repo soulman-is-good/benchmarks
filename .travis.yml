@@ -7,6 +7,9 @@ matrix:
         - clang -o testclang -lm ./test.c
       script:
         - for i in {1..5}; do ./testclang; done > ../reports/prime_clang.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: c
       compiler: gcc
       before_script:
@@ -14,12 +17,18 @@ matrix:
         - gcc ./test.c -o testgcc -lm
       script:
         - for i in {1..5}; do ./testgcc; done > ../reports/prime_gcc.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: java
       before_script:
         - cd prime
         - javac Test.java
       script:
         - for i in {1..5}; do java Test; done > ../reports/prime_java.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: dart
       dart: stable
       before_script:
@@ -27,24 +36,36 @@ matrix:
         - dart2native -o testdart test.dart
       script:
         - for i in {1..5}; do ./testdart; done > ../reports/prime_dart.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: node_js
       node_js: 14
       before_script:
         - cd prime
       script:
         - for i in {1..5}; do node test.js; done > ../reports/prime_nodejs.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: python
       python: 2.7
       before_script:
         - cd prime
       script:
         - for i in {1..5}; do python test.py; done > ../reports/prime_py2.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: python
       python: 3.7
       before_script:
         - cd prime
       script:
         - for i in {1..5}; do python test.py; done > ../reports/prime_py3.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: rust
       rust: stable
       before_script:
@@ -52,6 +73,9 @@ matrix:
         - rustc -o testrust test.rs
       script:
         - for i in {1..5}; do ./testrust; done > ../reports/prime_rust.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: go
       env:
         - CGO_ENABLED=0
@@ -60,18 +84,27 @@ matrix:
         - go build -o testgo test.go
       script:
         - for i in {1..5}; do ./testgo; done > ../reports/prime_go.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: php
       php: '5.6'
       before_script:
         - cd prime
       script:
         - for i in {1..5}; do php ./test.php; done > ../reports/prime_php5.out
+      before_deploy:
+        - cd ..
+        - git pull
     - language: php
       php: '7.0'
       before_script:
         - cd prime
       script:
         - for i in {1..5}; do php ./test.php; done > ../reports/prime_php7.out
+      before_deploy:
+        - cd ..
+        - git pull
 deploy:
   provider: pages
   skip_cleanup: true
